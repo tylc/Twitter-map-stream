@@ -13,7 +13,7 @@ class TweetViewModel:ObservableObject{
     
     @Published var tweetStream:[Tweet]
     @Published var searchText:String
-    @Published var annotations:[PointofInterest]
+    @Published var annotations:[Annotation]
     
     var bearer:String
     let headers: HTTPHeaders
@@ -26,7 +26,7 @@ class TweetViewModel:ObservableObject{
         
         searchText="default text"
         tweetStream = [Tweet]()
-        annotations = [PointofInterest]()
+        annotations = [Annotation]()
         //removePreviousRule()
     }
 
@@ -148,7 +148,7 @@ class TweetViewModel:ObservableObject{
         
         for (key, value) in tweet.includes?.places[0].geo.bbox ?? [:]{
             print("\(key) -> \(value)")
-            annotations.append(PointofInterest(name: tweet.data.id, location: .init(latitude: key, longitude: value)))
+            annotations.append(Annotation(name: tweet.data.id, location: .init(latitude: key, longitude: value)))
         }
         
     }
